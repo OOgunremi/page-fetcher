@@ -1,13 +1,14 @@
 
+const args = process.argv.slice(2);
 const request = require('request');
 const fs = require('fs');
 
 
-request('http://www.google.com', function (error, response, body) {
+request(args[0], function (error, response, body) {
   if (error) {
     console.log(`File doesn't exist.`);
   } else {
-    fs.writeFile('./index.html', body, () => {
+    fs.writeFile(args[1], body, () => {
       fs.stat('./index.html', (err, stats) => {
         if (err) {
           console.log(`File doesn't exist.`);
